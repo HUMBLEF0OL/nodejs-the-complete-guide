@@ -1,21 +1,21 @@
-const path = require('path');
 
 const express = require('express');
-const bodyParser = require('body-parser');
 
 const app = express();
 
-const adminRoutes = require('./routes/admin');
-const shopRoutes = require('./routes/shop');
-
-app.use(bodyParser.urlencoded({extended: false}));
-app.use(express.static(path.join(__dirname, 'public')));
-
-app.use('/admin', adminRoutes);
-app.use(shopRoutes);
+// app.use((req, res, next) => {
+//     console.log("in the middleware");
+//     // next function allows the function to jump to the next middleware
+//     next();
+// });
 
 app.use((req, res, next) => {
-    res.status(404).sendFile(path.join(__dirname, 'views', '404.html'));
-});
+    console.log('in the next middleware');
+    res.send("<h1>Test</h1>");
+})
+
+// const server = http.createServer(app);
+
+// server.listen(3000);
 
 app.listen(3000);
