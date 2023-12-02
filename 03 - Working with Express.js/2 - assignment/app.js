@@ -1,15 +1,13 @@
-const path = require('path')
+const express = require('express');
+const path = require('path');
+const parentRoute = require('./routes/main');
+const usersRoute = require('./routes/users')
 
-const express = require('express')
-
-const mainRouter = require('./routes/main')
-const usersRouter = require('./routes/users')
-
-const app = express()
-
+const app = express();
 app.use(express.static(path.join(__dirname, 'public')))
 
-app.use(mainRouter)
-app.use(usersRouter)
+app.use(usersRoute);
+app.use(parentRoute);
 
-app.listen(3000)
+
+app.listen(3000);
